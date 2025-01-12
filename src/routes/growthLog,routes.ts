@@ -2,7 +2,7 @@
 import express, { Request, Response } from 'express';
 import prisma from '../db';
 import { RequestGrowthLog } from '../types'; 
-import { upload } from '../services/cloudinary.services';
+import  upload  from '../services/cloudinary.services';
 
 const router = express.Router();
 
@@ -18,7 +18,7 @@ router.get("/", async (req: Request, res: Response) => {
 
 
 // Get all Growth Logs for a specific plant
-router.get('/plant/:plantId', async (req: Request, res: Response) => {
+router.get('/plant/:plantId', async (req: Request, res: Response): Promise<any> => {
   try {
     const plantId = parseInt(req.params.plantId, 10);
 
@@ -38,7 +38,7 @@ router.get('/plant/:plantId', async (req: Request, res: Response) => {
 
 
 // Add Growth Log (with Cloudinary image upload)
-router.post("/", upload.single("imageUrl"), async (req: RequestGrowthLog, res: Response) => {
+router.post("/", upload.single("imageUrl"), async (req: RequestGrowthLog, res: Response): Promise<any> => {
   try {
     const { plantId, date, height, notes } = req.body;
     const imageUrl = req.file?.path || 'https://res.cloudinary.com/dhvyrgmrq/image/upload/v1734197098/iqeyw6qdpum2w0ecqkcm.png';
@@ -98,7 +98,7 @@ router.get("/:id", async (req: Request, res: Response) => {
 
 
 // Update Growth Log
-router.put("/:id", upload.single("imageUrl"), async (req: RequestGrowthLog, res: Response) => {
+router.put("/:id", upload.single("imageUrl"), async (req: RequestGrowthLog, res: Response): Promise<any> => {
   try {
     const { plantId, date, height, notes } = req.body;
     const imageUrl = req.file?.path; // Get the image URL from Cloudinary if uploaded

@@ -3,7 +3,6 @@
 require("dotenv").config();
 
 
-
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
 const express = require("express");
@@ -17,23 +16,20 @@ require("./config")(app);
 const indexRoutes = require("./routes/index.routes");
 app.use("/api", indexRoutes);
 
-//const bookRoutes = require('./routes/book.routes');
-//app.use('/api', bookRoutes);
-
 const plantRoutes = require('./routes/plant.routes');
-app.use('/api/plants', plantRoutes);
+app.use('/plants', plantRoutes);
 
 const wateringLogRoutes = require('./routes/wateringLog.routes');
-app.use('/api/watering-logs', wateringLogRoutes);
+app.use('/watering-logs', wateringLogRoutes);
 
-const growthLogRoutes = require('./routes/growthLog.routes');
-app.use('/api/growth-logs', growthLogRoutes);
+const growthLogRoutes = require('./routes/growthLog,routes');
+app.use('/growth-logs', growthLogRoutes);
 
 const weatherRoutes = require('./routes/weather.routes');
-app.use('/api/weather', weatherRoutes);
+app.use('/weather', weatherRoutes);
 
 const encyclopediaRoutes = require('./routes/encyclopedia.routes');
-app.use('/api/encyclopedia', encyclopediaRoutes);
+app.use('/encyclopedia', encyclopediaRoutes);
 
 
 

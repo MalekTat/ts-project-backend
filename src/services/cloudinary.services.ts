@@ -1,26 +1,22 @@
-
-import cloudinary from 'cloudinary';
+import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import multer from 'multer';
 
-// Configure Cloudinary
 cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUD_API_KEY,
-  api_secret: process.env.CLOUD_API_SECRET,
+  cloud_name: process.env.CLOUD_NAME!,
+  api_key: process.env.CLOUD_API_KEY!,
+  api_secret: process.env.CLOUD_API_SECRET!,
 });
 
-// Setup Cloudinary Storage with Multer
 const storage = new CloudinaryStorage({
-  cloudinary,
-  folder: 'growth_logs', // Folder in Cloudinary to store images
-  allowedFormats: ['jpg', 'png'], // Allowed formats for image upload
-  filename: function (req, file, cb) {
-    cb(null, file.originalname); // Save file with its original name
-  }
+  cloudinary: cloudinary,
+  params: async (req, file) => ({
+    folder: 'profile_photos',  // The name of the folder in Cloudinary
+    resource_type: 'auto', // Automatically determines the file's type
+    public_id: file.originalname, // The file on Cloudinary will have the same name as the original file name
+  }),
 });
 
-// Create the multer instance with cloudinary storage
 const upload = multer({ storage });
 
-export { upload };
+export default upload;

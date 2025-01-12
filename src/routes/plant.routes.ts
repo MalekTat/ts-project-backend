@@ -19,7 +19,7 @@ router.get("/", async (req: Request, res: Response) => {
 
 
 // Add Plant
-router.post("/", async (req: RequestPlant, res: Response) => {
+router.post("/", async (req: RequestPlant, res: Response): Promise<any> => {
     try {
       const { name, waterFrequency, notes } = req.body ;
   
@@ -65,7 +65,7 @@ router.get("/:id", async (req: Request, res: Response) => {
 
 
 // Update Plant
-router.put("/:id", async (req: RequestPlant, res: Response) => {
+router.put("/:id", async (req: RequestPlant, res: Response): Promise<any> => {
     try {
       const { name, waterFrequency, notes } = req.body;
   
@@ -106,6 +106,6 @@ router.delete("/:id", async (req: Request, res: Response) => {
 });
 
 //export default router;
-module.exports = router
+module.exports = router;
   
 

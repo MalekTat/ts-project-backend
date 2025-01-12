@@ -3,7 +3,7 @@ import { Request } from "express";
 
 
 export interface WeatherData {
-    temperature: number;
+    temperature: string;
     description: string;
     icon: string;
   }
