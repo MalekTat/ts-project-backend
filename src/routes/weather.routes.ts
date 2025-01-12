@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import { WeatherData } from '../types'; 
 import axios from "axios";
 
+
 const router = express.Router();
 const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 const WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather";

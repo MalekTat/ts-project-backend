@@ -28,7 +28,7 @@ router.post("/", async (req: RequestPlant, res: Response): Promise<any> => {
 
   
       if (!plantDetails) {
-        return res.status(400).json({ error: "Failed to fetch plant details from Encyclopedia API" });
+        return res.status(400).json({ error: "Failed to fetch plant details from Encyclopedia API." });
       }
   
       const newPlant = await prisma.plant.create({
