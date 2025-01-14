@@ -40,6 +40,16 @@ router.post("/", async (req: RequestPlant, res: Response): Promise<any> => {
           imageUrl: plantDetails.imageUrl,
         },
       });
+
+
+      // Add an initial watering log for the newly created plant
+      await prisma.wateringLog.create({
+        data: {
+          plantId: newPlant.id,
+          wateredAt: new Date(), // Current date
+          notes: "Initial", // Initial note
+        },
+      });
   
       res.status(201).json(newPlant);
     } catch (error) {

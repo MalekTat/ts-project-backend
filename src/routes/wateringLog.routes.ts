@@ -7,7 +7,7 @@ const router = express.Router();
 // Get All Watering Logs
 router.get("/", async (req: Request, res: Response) => {
   try {
-    const logs = await prisma.wateringLog.findMany();
+    const logs = await prisma.wateringLog.findMany({ include: { plant: true}});
     res.json(logs);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch watering logs" });
@@ -22,6 +22,7 @@ router.get("/plant/:plantId", async (req: Request, res: Response) => {
   try {
     const logs = await prisma.wateringLog.findMany({
       where: { plantId: parseInt(plantId) },
+      include: { plant: true}
     });
     res.json(logs);
   } catch (error) {
@@ -55,6 +56,7 @@ router.get("/:id", async (req: Request, res: Response) => {
   try {
     const log = await prisma.wateringLog.findUnique({
       where: { id: parseInt(req.params.id) },
+      include: { plant: true}
     });
     res.json(log);
   } catch (error) {
