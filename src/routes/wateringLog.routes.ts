@@ -39,8 +39,8 @@ router.post("/", async (req: RequestWateringLog, res: Response) => {
 
     const newLog = await prisma.wateringLog.create({
       data: {
-        plantId: parseInt(plantId), // Convert string to number
-        wateredAt: new Date(date),   // Convert string to Date
+        plantId: parseInt(plantId), 
+        wateredAt: new Date(date),   
         notes,
       },
     });
@@ -72,7 +72,7 @@ router.put("/:id", async (req: RequestWateringLog, res: Response) => {
     const updatedLog = await prisma.wateringLog.update({
       where: { id: parseInt(req.params.id) },
       data: {
-        wateredAt: new Date(date), // Convert string to Date
+        wateredAt: new Date(date), 
         notes,
       },
     });
@@ -93,5 +93,5 @@ router.delete("/:id", async (req: Request, res: Response) => {
   }
 });
 
-//export default router;
-module.exports = router
+
+module.exports = router;

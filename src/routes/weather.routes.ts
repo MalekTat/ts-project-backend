@@ -39,5 +39,4 @@ router.get("/", async (req: Request, res: Response): Promise<any> => {
   }
 });
 
-//export default router;
-module.exports = router
+module.exports = router;

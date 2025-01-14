@@ -34,7 +34,7 @@ router.post("/", async (req: RequestPlant, res: Response): Promise<any> => {
       const newPlant = await prisma.plant.create({
         data: {
           name: plantDetails.name,
-          waterFrequency : parseInt(waterFrequency), // Convert string to number,
+          waterFrequency : parseInt(waterFrequency),
           sunlight: plantDetails.sunlight,
           notes,
           imageUrl: plantDetails.imageUrl,
@@ -42,12 +42,12 @@ router.post("/", async (req: RequestPlant, res: Response): Promise<any> => {
       });
 
 
-      // Add an initial watering log for the newly created plant
+      
       await prisma.wateringLog.create({
         data: {
           plantId: newPlant.id,
-          wateredAt: new Date(), // Current date
-          notes: "Initial", // Initial note
+          wateredAt: new Date(),
+          notes: "Initial", 
         },
       });
   
@@ -90,7 +90,7 @@ router.put("/:id", async (req: RequestPlant, res: Response): Promise<any> => {
         where: { id: parseInt(req.params.id, 10) },
         data: {
           name: plantDetails.name,
-          waterFrequency : parseInt(waterFrequency), // Convert string to number,
+          waterFrequency : parseInt(waterFrequency), 
           sunlight: plantDetails.sunlight,
           notes,
           imageUrl: plantDetails.imageUrl,
@@ -115,7 +115,7 @@ router.delete("/:id", async (req: Request, res: Response) => {
   }
 });
 
-//export default router;
+
 module.exports = router;
   
 

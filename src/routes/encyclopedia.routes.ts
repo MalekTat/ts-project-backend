@@ -23,13 +23,11 @@ router.get("/:query", async (req: Request, res: Response) => {
       imageUrl: plant.attributes.main_image_path || "",
     }));
 
-    res.json(plants); // Return the formatted plant information
+    res.json(plants); 
   } catch (error: any) {
     console.error("Error fetching plant data from OpenFarm:", error.message);
     res.status(500).json({ error: error.message || "Failed to fetch plant information" });
   }
 });
 
-
-//export default router;
-module.exports = router
+module.exports = router;
