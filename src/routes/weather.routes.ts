@@ -27,7 +27,7 @@ router.get("/", async (req: Request, res: Response): Promise<any> => {
 
     // Format the response to match the WeatherData interface
     const weatherData: WeatherData = {
-      temperature: `${response.data.main.temp}°C`,
+      temperature: `${Math.round( parseFloat(response.data.main.temp))}°C`,
       description: response.data.weather[0].description,
       icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     };
