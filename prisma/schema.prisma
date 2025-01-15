@@ -21,7 +21,7 @@ model Plant {
   sunlight       String?
   notes          String?
   imageUrl       String?
-  wateringLogs   WateringLog[]
+  wateringLogs   WateringLog[]      
   growthLogs     GrowthTracking[]
 }
 
@@ -31,7 +31,7 @@ model WateringLog {
   wateredAt    DateTime
   notes        String?
 
-  plant        Plant    @relation(fields: [plantId], references: [id])
+  plant        Plant    @relation(fields: [plantId], references: [id], onDelete: Cascade)
 }
 
 model GrowthTracking {
@@ -42,5 +42,5 @@ model GrowthTracking {
   notes        String?
   imageUrl     String?   // Added field for images
 
-  plant        Plant    @relation(fields: [plantId], references: [id])
+  plant        Plant    @relation(fields: [plantId], references: [id], onDelete: Cascade)
 }
