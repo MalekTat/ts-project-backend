@@ -9,7 +9,7 @@ const router = express.Router();
 // Get All Growth Logs
 router.get("/", async (req: Request, res: Response) => {
   try {
-    const logs = await prisma.growthTracking.findMany();
+    const logs = await prisma.growthTracking.findMany({ include: { plant: true}});
     res.json(logs);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch growth logs" });
@@ -28,6 +28,7 @@ router.get('/plant/:plantId', async (req: Request, res: Response): Promise<any> 
 
     const growthLogs = await prisma.growthTracking.findMany({
       where: { plantId },
+      include: { plant: true}
     });
 
     res.json(growthLogs);
@@ -87,6 +88,7 @@ router.get("/:id", async (req: Request, res: Response) => {
   try {
     const log = await prisma.growthTracking.findUnique({
       where: { id: parseInt(req.params.id) },
+      include: { plant: true}
     });
     res.json(log);
   } catch (error) {
